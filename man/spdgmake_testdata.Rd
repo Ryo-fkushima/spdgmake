@@ -3,7 +3,7 @@
 \docType{data}
 \name{spdgmake_testdata}
 \alias{spdgmake_testdata}
-\title{testing data for spider diagram plotting (GLOSS)}
+\title{Testing data for spider diagram plotting (GLOSS)}
 \format{
 dataframe
 }
@@ -11,7 +11,7 @@ dataframe
 spdgmake_testdata
 }
 \description{
-testing data for spider diagram plotting (GLOSS)
+Testing data for spider diagram plotting (GLOSS)
 }
 \references{
 \url{https://doi.org/10.1016/S0009-2541(97)00150-2}

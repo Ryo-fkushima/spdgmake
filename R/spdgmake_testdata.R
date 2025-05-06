@@ -1,4 +1,4 @@
-#' testing data for spider diagram plotting (GLOSS)
+#' Testing data for spider diagram plotting (GLOSS)
 #'
 #' @name spdgmake_testdata
 #' @docType data

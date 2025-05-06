@@ -17,7 +17,7 @@
 #' @param Filt (List of 2) filter you can generate by using spdg_filter_make().
 #' @param Nml (dataframe; num) normalized factors. This package allows you to use
 #'  either of PM_MS95' (primitive mantle; McDonough & Sun 1995), 'CI_MS95'
-#'  (CI chondrite; McDonough & Sun 1995), and 'NMORB_SM89' (N-MORB; Sun & McDonough 1989).
+#'  (CI chondrite; McDonough & Sun 1995), or 'NMORB_SM89' (N-MORB; Sun & McDonough 1989).
 #'  However, you can set any normalized factors by defining a new 1 x n dataframe.
 #'
 #' @param Plotcolor (chr) line color
