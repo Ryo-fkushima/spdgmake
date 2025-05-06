@@ -48,5 +48,8 @@ filtering <- spdg_filter_make(Sample, Phase, Comment1, Comment2, NA, NA, NA, NA)
 # draw spider diagrams
 spdg_lines(PlotElements, DataElements, Concentrations, filtering, NMORB_SM89, "black")
 
+# save processed data
+# ProcessedData <- spdg_plotdata_export(PlotElements, DataElements, Concentrations, filtering, NMORB_SM89, Output = FALSE)
+
 ```
 
