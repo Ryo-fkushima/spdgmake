@@ -7,10 +7,9 @@
 #'
 #' @param PlotElements (vector; chr) elements for which you want to plot concentrations
 #' @param DataElements (vector; chr) elements presented in the input dataset
-#' @param Concentrations (dataframe; chr) concentrations (in µg/g or ppm) in the input dataset.
-#' Note that each value in the matrix will be internally converted into the numeric type.
-#' Any unreasonable values (e.g., those with '<' below detection limit) will be
-#' replaced by NA and will not appear on the plot.
+#' @param Concentrations (dataframe; num) concentrations (in µg/g or ppm) in the input dataset.
+#' Note that each value in the dataframe should be a numeric type value.
+#' NA values can be read but will not appear on the plot.
 #'
 #' @param Filt (List of 2) filter you can generate by using spdg_filter_make().
 #' @param Nml (dataframe; num) normalized factors. This package allows you to use
@@ -32,7 +31,8 @@
 #'
 #' DataElements <- colnames(data)[4:ncol(data)]
 #'
-#' Concentrations <- data[,4:ncol(data)]
+#' Concentrations_original <- data[,4:ncol(data)]
+#' Concentrations <- as.data.frame(apply(Concentrations_original, c(1,2), as.numeric))
 #'
 #' PlotElements <- c(
 #'   "Cs", "Rb","Ba", "Pb", "Sr","La","Nd","Sm","Eu","Gd",
@@ -57,13 +57,14 @@ spdg_plotdata_export <- function(PlotElements, DataElements, Concentrations, Fil
     stop(cat("Error: Unexpected element(s) in the 'PlotElements' vector \n"))
   }
 
-  #if (all(sapply(Concentrations, class) == "numeric") == F) {
-  #  stop(cat("Error: 'Concentrations' should be a numeric type dataframe \n"))
-  #}
+   if (all(sapply(Concentrations, class) == "numeric") == F) {
+     stop(cat("Error: 'Concentrations' should be a numeric type dataframe \n"))
+   }
 
 
   DataElements_mod <- DataElements
-  Concentrations_mod <- as.data.frame(apply(Concentrations, c(1,2), as.numeric))
+  #Concentrations_mod <- as.data.frame(apply(Concentrations, c(1,2), as.numeric))
+  Concentrations_mod <- Concentrations
 
   for (i in 1:length(PlotElements)) {
     if (PlotElements[i] %in% DataElements_mod) {

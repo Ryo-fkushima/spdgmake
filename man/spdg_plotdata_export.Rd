@@ -18,10 +18,9 @@ spdg_plotdata_export(
 
 \item{DataElements}{(vector; chr) elements presented in the input dataset}
 
-\item{Concentrations}{(dataframe; chr) concentrations (in µg/g or ppm) in the input dataset.
-Note that each value in the matrix will be internally converted into the numeric type.
-Any unreasonable values (e.g., those with '<' below detection limit) will be
-replaced by NA and will not appear on the plot.}
+\item{Concentrations}{(dataframe; num) concentrations (in µg/g or ppm) in the input dataset.
+Note that each value in the dataframe should be a numeric type value.
+NA values can be read but will not appear on the plot.}
 
 \item{Filt}{(List of 2) filter you can generate by using spdg_filter_make().}
 
@@ -49,7 +48,8 @@ Comment2 <- as.data.frame(data[,"Type"])
 
 DataElements <- colnames(data)[4:ncol(data)]
 
-Concentrations <- data[,4:ncol(data)]
+Concentrations_original <- data[,4:ncol(data)]
+Concentrations <- as.data.frame(apply(Concentrations_original, c(1,2), as.numeric))
 
 PlotElements <- c(
   "Cs", "Rb","Ba", "Pb", "Sr","La","Nd","Sm","Eu","Gd",
