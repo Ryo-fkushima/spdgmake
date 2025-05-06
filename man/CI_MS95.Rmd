@@ -1,0 +1,11 @@
+\name{CI_MS95}
+\alias{CI_MS95}
+\title{CI chondrite compositions}
+
+\value{
+CI chondrite compositions
+}
+\description{
+CI chondrite compositions presented by McDonough & Sun (1995)
+}
+
