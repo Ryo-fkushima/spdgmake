@@ -14,26 +14,32 @@ spdg_plotdata_export(
 )
 }
 \arguments{
-\item{PlotElements}{Sample}
+\item{PlotElements}{(vector; chr) elements for which you want to plot concentrations}
 
-\item{DataElements}{Sample}
+\item{DataElements}{(vector; chr) elements presented in the input dataset}
 
-\item{Concentrations}{Sample}
+\item{Concentrations}{(dataframe; chr) concentrations (in µg/g or ppm) in the input dataset.
+Note that each value in the matrix will be internally converted into the numeric type.
+Any unreasonable values (e.g., those with '<' below detection limit) will be
+replaced by NA and will not appear on the plot.}
 
-\item{Filt}{Sample}
+\item{Filt}{(List of 2) filter you can generate by using spdg_filter_make().}
 
-\item{Nml}{Sample}
+\item{Nml}{(dataframe; num) normalized factors. This package allows you to use
+either of PM_MS95' (primitive mantle; McDonough & Sun 1995), 'CI_MS95'
+(CI chondrite; McDonough & Sun 1995), and 'NMORB_SM89' (N-MORB; Sun & McDonough 1989).
+However, you can set any normalized factors by defining a new 1 x n dataframe.}
 
-\item{Output}{Sample}
+\item{Output}{(logical) if Output = TRUE, normalized concentration data will be
+exported as a .txt file in the working directory.}
 }
 \value{
 Normalized concentration data
 }
 \description{
-\code{spdg_plotdata_export} exports normalized data
+\code{spdg_plotdata_export} exports normalized concentration data.
 }
 \examples{
-library(spdgmake)
 data <- spdgmake_testdata
 
 Sample <- as.data.frame(data[,"Type"])
@@ -56,6 +62,9 @@ filtering <- spdg_filter_make(Sample, Phase, Comment1, Comment2, NA, NA, NA, NA)
 
 spdg_lines(PlotElements, DataElements, Concentrations, filtering, NMORB_SM89, "black")
 
-ProcessedData <- spdg_plotdata_export(PlotElements, DataElements, Concentrations, filtering, NMORB_SM89, Output = FALSE)
+ProcessedData <- spdg_plotdata_export(
+  PlotElements, DataElements, Concentrations,
+  filtering, NMORB_SM89, Output = FALSE
+  )
 
 }

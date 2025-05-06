@@ -16,30 +16,34 @@ spdg_filter_make(
 )
 }
 \arguments{
-\item{Sample}{Sample}
+\item{Sample}{(dataframe; chr) column for rock sample names}
 
-\item{Phase}{Sample}
+\item{Phase}{(dataframe; chr) column for mineral names}
 
-\item{Comment1}{Sample}
+\item{Comment1}{(dataframe; chr) column for miscellaneous comments (1)}
 
-\item{Comment2}{Sample}
+\item{Comment2}{(dataframe; chr) column for miscellaneous comments (2)}
 
-\item{Sample_value}{Sample}
+\item{Sample_value}{(chr) rock sample name you want to choose}
 
-\item{Phase_value}{Sample}
+\item{Phase_value}{(chr) mineral name you want to choose}
 
-\item{Comment1_value}{Sample}
+\item{Comment1_value}{(chr) comment you want to choose (1)}
 
-\item{Comment2_value}{Sample}
+\item{Comment2_value}{(chr) comment you want to choose (2)}
 }
 \value{
-List of 2: 1. all the row indexes under which data passing the filters (as a num vector); 2. filter description (as a text)
+List of 2: (1) all the row indexes under which data passing the filters (as a num vector) and (2) filter description (as a text)
 }
 \description{
-\code{spdg_filter_make} defines filters for plotting spider diagrams
+\code{spdg_filter_make} defines filters for plotting spider diagrams.
+You can set at most 4 different factors for the filtering.
+This function can generate a filter with which all the conditions of
+Sample = Sample_value, Phase = Phase_value, Comment1 = Comment1_value,
+Comment2 = Comment2_value are satisfied. (If you set each 'xxx_value' as NA,
+filtering will not be applied.)
 }
 \examples{
-library(spdgmake)
 data <- spdgmake_testdata
 Sample <- as.data.frame(data[,"Type"])
 Phase <- as.data.frame(data[,"Type"])

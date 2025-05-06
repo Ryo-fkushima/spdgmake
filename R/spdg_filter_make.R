@@ -1,19 +1,23 @@
 #' @title Defining filters for plotting spider diagrams
-#' @description \code{spdg_filter_make} defines filters for plotting spider diagrams
+#' @description \code{spdg_filter_make} defines filters for plotting spider diagrams.
+#' You can set at most 4 different factors for the filtering.
+#' This function can generate a filter with which all the conditions of
+#' Sample = Sample_value, Phase = Phase_value, Comment1 = Comment1_value,
+#' Comment2 = Comment2_value are satisfied. (If you set each 'xxx_value' as NA,
+#' filtering will not be applied.)
 #'
-#' @param Sample Sample
-#' @param Phase Sample
-#' @param Comment1 Sample
-#' @param Comment2 Sample
-#' @param Sample_value Sample
-#' @param Phase_value Sample
-#' @param Comment1_value Sample
-#' @param Comment2_value Sample
+#' @param Sample (dataframe; chr) column for rock sample names
+#' @param Phase (dataframe; chr) column for mineral names
+#' @param Comment1 (dataframe; chr) column for miscellaneous comments (1)
+#' @param Comment2 (dataframe; chr) column for miscellaneous comments (2)
+#' @param Sample_value (chr) rock sample name you want to choose
+#' @param Phase_value (chr) mineral name you want to choose
+#' @param Comment1_value (chr) comment you want to choose (1)
+#' @param Comment2_value (chr) comment you want to choose (2)
 #'
-#' @return List of 2: 1. all the row indexes under which data passing the filters (as a num vector); 2. filter description (as a text)
+#' @return List of 2: (1) all the row indexes under which data passing the filters (as a num vector) and (2) filter description (as a text)
 #' @export
 #' @examples
-#' library(spdgmake)
 #' data <- spdgmake_testdata
 #' Sample <- as.data.frame(data[,"Type"])
 #' Phase <- as.data.frame(data[,"Type"])

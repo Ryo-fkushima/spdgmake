@@ -1,21 +1,34 @@
 #' @title Drawing spider diagrams
-#' @description \code{spdg_lines} draws spider diagrams
+#' @description \code{spdg_lines} draws spider diagrams.
+#' Use this function after making a plot area with the spdg_plot() function and
+#' generating the filter with the spdg_filter_make() function.
 #'
 #' @importFrom dplyr select
-#' @param PlotElements Sample
-#' @param DataElements Sample
-#' @param Concentrations Sample
-#' @param Filt Sample
-#' @param Nml Sample
-#' @param Plotcolor Sample
-#' @param Plottype Sample
-#' @param Symboltype Sample
-#' @param Linetype Sample
-#' @param Width Sample
+#' @importFrom dplyr all_of
+#' @importFrom graphics lines
+#' @importFrom graphics title
+#'
+#' @param PlotElements (vector; chr) elements for which you want to plot concentrations
+#' @param DataElements (vector; chr) elements presented in the input dataset
+#' @param Concentrations (dataframe; chr) concentrations (in µg/g or ppm) in the input dataset.
+#' Note that each value in the matrix will be internally converted into the numeric type.
+#' Any unreasonable values (e.g., those with '<' below detection limit) will be
+#' replaced by NA and will not appear on the plot.
+#'
+#' @param Filt (List of 2) filter you can generate by using spdg_filter_make().
+#' @param Nml (dataframe; num) normalized factors. This package allows you to use
+#'  either of PM_MS95' (primitive mantle; McDonough & Sun 1995), 'CI_MS95'
+#'  (CI chondrite; McDonough & Sun 1995), and 'NMORB_SM89' (N-MORB; Sun & McDonough 1989).
+#'  However, you can set any normalized factors by defining a new 1 x n dataframe.
+#'
+#' @param Plotcolor (chr) line color
+#' @param Plottype (chr) type as in the lines() function
+#' @param Symboltype (int) pch as in the lines() function
+#' @param Linetype (int) lty as in the lines() function
+#' @param Width (num) lwd as in the lines() function
 #'
 #' @export
 #' @examples
-#' library(spdgmake)
 #' data <- spdgmake_testdata
 #'
 #' Sample <- as.data.frame(data[,"Type"])
@@ -66,8 +79,8 @@ colnames(Concentrations_mod) <- DataElements_mod
 
 #####
 
-concdata <- dplyr::select(Concentrations_mod, all_of(PlotElements))
-standard <- dplyr::select(Nml, all_of(PlotElements))
+concdata <- dplyr::select(Concentrations_mod, dplyr::all_of(PlotElements))
+standard <- dplyr::select(Nml, dplyr::all_of(PlotElements))
 
 concdata[is.na(concdata)] <- 0
 

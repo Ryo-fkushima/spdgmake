@@ -18,31 +18,38 @@ spdg_lines(
 )
 }
 \arguments{
-\item{PlotElements}{Sample}
+\item{PlotElements}{(vector; chr) elements for which you want to plot concentrations}
 
-\item{DataElements}{Sample}
+\item{DataElements}{(vector; chr) elements presented in the input dataset}
 
-\item{Concentrations}{Sample}
+\item{Concentrations}{(dataframe; chr) concentrations (in µg/g or ppm) in the input dataset.
+Note that each value in the matrix will be internally converted into the numeric type.
+Any unreasonable values (e.g., those with '<' below detection limit) will be
+replaced by NA and will not appear on the plot.}
 
-\item{Filt}{Sample}
+\item{Filt}{(List of 2) filter you can generate by using spdg_filter_make().}
 
-\item{Nml}{Sample}
+\item{Nml}{(dataframe; num) normalized factors. This package allows you to use
+either of PM_MS95' (primitive mantle; McDonough & Sun 1995), 'CI_MS95'
+(CI chondrite; McDonough & Sun 1995), and 'NMORB_SM89' (N-MORB; Sun & McDonough 1989).
+However, you can set any normalized factors by defining a new 1 x n dataframe.}
 
-\item{Plotcolor}{Sample}
+\item{Plotcolor}{(chr) line color}
 
-\item{Plottype}{Sample}
+\item{Plottype}{(chr) type as in the lines() function}
 
-\item{Symboltype}{Sample}
+\item{Symboltype}{(int) pch as in the lines() function}
 
-\item{Linetype}{Sample}
+\item{Linetype}{(int) lty as in the lines() function}
 
-\item{Width}{Sample}
+\item{Width}{(num) lwd as in the lines() function}
 }
 \description{
-\code{spdg_lines} draws spider diagrams
+\code{spdg_lines} draws spider diagrams.
+Use this function after making a plot area with the spdg_plot() function and
+generating the filter with the spdg_filter_make() function.
 }
 \examples{
-library(spdgmake)
 data <- spdgmake_testdata
 
 Sample <- as.data.frame(data[,"Type"])

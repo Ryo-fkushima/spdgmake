@@ -7,19 +7,18 @@
 spdg_plot(PlotElements, Order_min = -3, Order_max = 3, Xlabelsize = 0.85)
 }
 \arguments{
-\item{PlotElements}{Sample}
+\item{PlotElements}{(vector; chr) elements for which you want to plot concentrations}
 
-\item{Order_min}{Sample}
+\item{Order_min}{(int) log10(minimum value)}
 
-\item{Order_max}{Sample}
+\item{Order_max}{(int) log10(maximum value)}
 
-\item{Xlabelsize}{Sample}
+\item{Xlabelsize}{(num) size of x-axis labels}
 }
 \description{
-\code{spdg_plot} generates the plot area for spider diagrams
+\code{spdg_plot} generates the plot area for spider diagrams.
 }
 \examples{
-library(spdgmake)
 PlotElements <- c(
   "Cs", "Rb","Ba", "Pb", "Sr","La","Nd","Sm","Eu","Gd",
   "Dy","Yb","Lu","Hf","Ta","Y","Zr","Nb","Th","U"

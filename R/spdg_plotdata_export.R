@@ -1,18 +1,28 @@
 #' @title Exporting normalized data
-#' @description \code{spdg_plotdata_export} exports normalized data
+#' @description \code{spdg_plotdata_export} exports normalized concentration data.
 #'
 #' @importFrom dplyr select
-#' @param PlotElements Sample
-#' @param DataElements Sample
-#' @param Concentrations Sample
-#' @param Filt Sample
-#' @param Nml Sample
-#' @param Output Sample
+#' @importFrom dplyr all_of
+#' @importFrom utils write.table
+#'
+#' @param PlotElements (vector; chr) elements for which you want to plot concentrations
+#' @param DataElements (vector; chr) elements presented in the input dataset
+#' @param Concentrations (dataframe; chr) concentrations (in µg/g or ppm) in the input dataset.
+#' Note that each value in the matrix will be internally converted into the numeric type.
+#' Any unreasonable values (e.g., those with '<' below detection limit) will be
+#' replaced by NA and will not appear on the plot.
+#'
+#' @param Filt (List of 2) filter you can generate by using spdg_filter_make().
+#' @param Nml (dataframe; num) normalized factors. This package allows you to use
+#'  either of PM_MS95' (primitive mantle; McDonough & Sun 1995), 'CI_MS95'
+#'  (CI chondrite; McDonough & Sun 1995), and 'NMORB_SM89' (N-MORB; Sun & McDonough 1989).
+#'  However, you can set any normalized factors by defining a new 1 x n dataframe.
+#' @param Output (logical) if Output = TRUE, normalized concentration data will be
+#' exported as a .txt file in the working directory.
 #'
 #' @return Normalized concentration data
 #' @export
 #' @examples
-#' library(spdgmake)
 #' data <- spdgmake_testdata
 #'
 #' Sample <- as.data.frame(data[,"Type"])
@@ -35,7 +45,10 @@
 #'
 #' spdg_lines(PlotElements, DataElements, Concentrations, filtering, NMORB_SM89, "black")
 #'
-#' ProcessedData <- spdg_plotdata_export(PlotElements, DataElements, Concentrations, filtering, NMORB_SM89, Output = FALSE)
+#' ProcessedData <- spdg_plotdata_export(
+#'   PlotElements, DataElements, Concentrations,
+#'   filtering, NMORB_SM89, Output = FALSE
+#'   )
 #'
 #
 spdg_plotdata_export <- function(PlotElements, DataElements, Concentrations, Filt, Nml, Output = FALSE){
@@ -65,8 +78,8 @@ spdg_plotdata_export <- function(PlotElements, DataElements, Concentrations, Fil
 
   #####
 
-  concdata <- dplyr::select(Concentrations_mod, all_of(PlotElements))
-  standard <- dplyr::select(Nml, all_of(PlotElements))
+  concdata <- dplyr::select(Concentrations_mod, dplyr::all_of(PlotElements))
+  standard <- dplyr::select(Nml, dplyr::all_of(PlotElements))
 
   concdata[is.na(concdata)] <- 0
 

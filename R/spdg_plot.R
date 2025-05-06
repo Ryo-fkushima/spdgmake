@@ -1,15 +1,15 @@
 #' @title Generating the plot area for spider diagrams
-#' @description \code{spdg_plot} generates the plot area for spider diagrams
+#' @description \code{spdg_plot} generates the plot area for spider diagrams.
 #'
-#' @param PlotElements Sample
-#' @param Order_min Sample
-#' @param Order_max Sample
-#' @param Xlabelsize Sample
+#' @importFrom graphics axis
+#' @param PlotElements (vector; chr) elements for which you want to plot concentrations
+#' @param Order_min (int) log10(minimum value)
+#' @param Order_max (int) log10(maximum value)
+#' @param Xlabelsize (num) size of x-axis labels
 #'
 #'
 #' @export
 #' @examples
-#' library(spdgmake)
 #' PlotElements <- c(
 #'   "Cs", "Rb","Ba", "Pb", "Sr","La","Nd","Sm","Eu","Gd",
 #'   "Dy","Yb","Lu","Hf","Ta","Y","Zr","Nb","Th","U"
